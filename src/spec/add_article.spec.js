@@ -3,7 +3,7 @@ import {ADD_ARTICLE} from "../js/constants/action-types";
 
 describe('adding an article', () => {
   let store = undefined;
-  beforeEach(() => store = buildStore([]));
+  beforeEach(() => store = buildStore());
 
   it('should list it', function () {
     store.dispatch({type: ADD_ARTICLE, payload: {title: 'some article'}})
