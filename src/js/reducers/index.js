@@ -1,8 +1,10 @@
 import { ADD_ARTICLE } from "../constants/action-types";
+import dice from '../domain/dice'
 
 const initialState = {
   articles: [],
-  remoteArticles: []
+  remoteArticles: [],
+  fights: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -17,6 +19,14 @@ function rootReducer(state = initialState, action) {
       remoteArticles: state.remoteArticles.concat(action.payload)
     });
   }
+
+  if (action.type === "USE_ITEM") {
+    return Object.assign({}, state, {
+      fights: state.fights.concat({damage: dice.roll()})
+    });
+  }
+
+  [].reverse().slice(0, 10)
   return state;
 }
 
