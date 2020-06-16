@@ -8,13 +8,17 @@ const initialiseSagaMiddleware = createSagaMiddleware();
 
 const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  rootReducer,
-  storeEnhancers(
-    applyMiddleware(forbiddenWordsMiddleware, initialiseSagaMiddleware)
-  )
-);
+const buildStore = function (additionalMiddleware = []) {
+  let store = createStore(
+    rootReducer,
+    storeEnhancers(
+      applyMiddleware(forbiddenWordsMiddleware, initialiseSagaMiddleware, ...additionalMiddleware)
+    )
+  );
+  initialiseSagaMiddleware.run(apiSaga);
 
-initialiseSagaMiddleware.run(apiSaga);
+  return store;
+};
 
-export default store;
+
+export default buildStore;
