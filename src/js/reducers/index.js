@@ -21,9 +21,11 @@ function rootReducer(state = initialState, action) {
   }
 
   if (action.type === "USE_ITEM") {
-    return Object.assign({}, state, {
-      fights: state.fights.concat({damage: dice.roll()})
-    });
+    let newResult = {damage: dice.roll()};
+    return {
+      ...state,
+      fights: [newResult, ...state.fights]
+    }
   }
 
   [].reverse().slice(0, 10)

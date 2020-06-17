@@ -9,7 +9,6 @@ const ConnectedList = ({ actions }) => (
   <ul>
     {
       actions
-        .reverse()
         .slice(0, 5)
         .map(action => (<li>Damage: {action.damage}</li>))
     }
