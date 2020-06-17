@@ -21,7 +21,8 @@ function rootReducer(state = initialState, action) {
   }
 
   if (action.type === "USE_ITEM") {
-    let newResult = {damage: dice.roll()};
+    let rolls = [dice.roll(), dice.roll()];
+    let newResult = {rolls: rolls, damage: rolls.filter(roll => roll >= 5).length};
     return {
       ...state,
       fights: [newResult, ...state.fights]

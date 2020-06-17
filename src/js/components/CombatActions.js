@@ -10,7 +10,7 @@ const ConnectedList = ({ actions }) => (
     {
       actions
         .slice(0, 5)
-        .map(action => (<li>Damage: {action.damage}</li>))
+        .map(action => (<li>Damage: {action.damage} ({action.rolls.join('-')})</li>))
     }
   </ul>
 );
