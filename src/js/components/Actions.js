@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {attackWith} from "../actions";
 
 const Equipment = ({equipment, use}) => {
   const render = (item, i) => {
@@ -17,8 +18,10 @@ const Equipment = ({equipment, use}) => {
 };
 
 
+
+
 const mapDispatchToProps = dispatch => ({
-  use: weaponName => dispatch({type: "ATTACK", payload: {weaponName}})
+  use: weaponName => dispatch(attackWith(weaponName))
 });
 
 const mapStateToProps = state => ({equipment: state.equipment});
