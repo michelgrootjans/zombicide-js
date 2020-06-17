@@ -1,15 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
+import './Actions.css';
 
-const mapStateToProps = state => {
-  return { combats: state.combats };
+const renderRoll = roll => {
+  let className = `roll ${(roll.success ? 'success' : 'fail')}`;
+  console.log({roll, className})
+  return <span className={ className }>{roll.value}</span>
 };
 
-const renderRoll = action => action.rolls.join('-');
-const renderAction = (action, i) => <li key={`action_${i}`}>{action.weaponName}: {action.damage} ({renderRoll(action)})</li>;
+const renderAction = (action, i) => <li key={`action_${i}`}>{action.damage} - {action.weaponName} ({action.rolls.map(renderRoll)})</li>;
 
 const CombatActions = ({ combats }) => (
-  <ul>
+  <ul className='rolls'>
     {
       combats
         .slice(0, 10)
@@ -18,4 +20,4 @@ const CombatActions = ({ combats }) => (
   </ul>
 );
 
-export default connect(mapStateToProps)(CombatActions);
+export default connect(state => state)(CombatActions);

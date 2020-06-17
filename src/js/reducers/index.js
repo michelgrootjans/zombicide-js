@@ -13,9 +13,11 @@ function rootReducer(state = initialState, action) {
     const {weaponName} = action.payload;
     const weapon = state.equipment.find(item => item.name === weaponName)
 
-    let rolls = Array.from(Array(weapon.dice).keys()).map(_ => dice.roll());
+    let rolls = Array.from(Array(weapon.dice).keys())
+      .map(_ => dice.roll())
+      .map(value => ({value, success: value >= weapon.accuracy}));
     let damage = rolls
-      .filter(roll => roll >= weapon.accuracy)
+      .filter(roll => roll.success)
       .reduce((acc, _) => acc + weapon.damage, 0);
     let newResult = {weaponName, rolls, damage};
     return {

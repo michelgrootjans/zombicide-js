@@ -1,0 +1,13 @@
+.roll {
+    padding: 2px
+}
+
+.roll.success {
+    color: green;
+    font-weight: bold;
+}
+
+.roll.fail {
+    color: red;
+    font-weight: lighter;
+}
