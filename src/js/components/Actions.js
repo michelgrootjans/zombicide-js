@@ -1,11 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import {attackWith} from "../actions";
+import './Actions.css'
 
 const Equipment = ({equipment, use}) => {
   const render = (item, i) => {
     const src = process.env.PUBLIC_URL + "/" + item.src
     return <img
+      className={'card'}
       key={`card_${i}`}
       src={src}
       alt={item.name}
