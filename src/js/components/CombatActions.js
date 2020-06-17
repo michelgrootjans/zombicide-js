@@ -10,10 +10,10 @@ const renderRoll = roll => {
 
 const renderAction = (action, i) => <li key={`action_${i}`}>{action.damage} - {action.weaponName} ({action.rolls.map(renderRoll)})</li>;
 
-const CombatActions = ({ combats }) => (
+const CombatActions = ({ actions }) => (
   <ul className='rolls'>
     {
-      combats
+      actions
         .slice(0, 10)
         .map(renderAction)
     }

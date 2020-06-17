@@ -4,7 +4,7 @@ import {initialEquipment} from "./equipment";
 const initialState = {
   articles: [],
   remoteArticles: [],
-  combats: [],
+  actions: [],
   equipment: initialEquipment()
 };
 
@@ -22,7 +22,7 @@ function rootReducer(state = initialState, action) {
     let newResult = {weaponName, rolls, damage};
     return {
       ...state,
-      combats: [newResult, ...state.combats]
+      actions: [newResult, ...state.actions]
     }
   }
 
