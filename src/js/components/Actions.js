@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-function mapDispatchToProps(dispatch) {
-  return {
-    use: itemName => dispatch({type: "USE_ITEM", payload: {itemName}})
-  };
-}
-
 class ConnectedForm extends Component {
   render() {
     return (
@@ -16,5 +10,9 @@ class ConnectedForm extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  use: weaponName => dispatch({type: "ATTACK", payload: {weaponName}})
+});
 
 export default connect(null, mapDispatchToProps)(ConnectedForm);

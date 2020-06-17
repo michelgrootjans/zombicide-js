@@ -2,19 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
-  return { actions: state.fights };
+  return { combats: state.combats };
 };
 
-const ConnectedList = ({ actions }) => (
+const render = action => <li>Damage: {action.damage} ({action.rolls.join('-')})</li>;
+
+const CombatActions = ({ combats }) => (
   <ul>
     {
-      actions
+      combats
         .slice(0, 5)
-        .map(action => (<li>Damage: {action.damage} ({action.rolls.join('-')})</li>))
+        .map(render)
     }
   </ul>
 );
 
-const CombatActions = connect(mapStateToProps)(ConnectedList);
-
-export default CombatActions;
+export default connect(mapStateToProps)(CombatActions);

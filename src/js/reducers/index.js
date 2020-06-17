@@ -4,7 +4,7 @@ import dice from '../domain/dice'
 const initialState = {
   articles: [],
   remoteArticles: [],
-  fights: []
+  combats: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -20,12 +20,12 @@ function rootReducer(state = initialState, action) {
     });
   }
 
-  if (action.type === "USE_ITEM") {
+  if (action.type === "ATTACK") {
     let rolls = [dice.roll(), dice.roll()];
     let newResult = {rolls: rolls, damage: rolls.filter(roll => roll >= 5).length};
     return {
       ...state,
-      fights: [newResult, ...state.fights]
+      combats: [newResult, ...state.combats]
     }
   }
 

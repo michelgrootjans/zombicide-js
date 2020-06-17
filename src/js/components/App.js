@@ -5,7 +5,7 @@ import CombatActions from "./CombatActions";
 const App = () => (
   <>
     <div>
-      <h2>Fights</h2>
+      <h2>Combat</h2>
       <Actions />
       <CombatActions />
     </div>
