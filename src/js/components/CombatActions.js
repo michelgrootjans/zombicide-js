@@ -5,14 +5,15 @@ const mapStateToProps = state => {
   return { combats: state.combats };
 };
 
-const render = action => <li>Damage: {action.damage} ({action.rolls.join('-')})</li>;
+const renderRoll = action => action.rolls.join('-');
+const renderAction = (action, i) => <li key={`action_${i}`}>{action.weaponName}: {action.damage} ({renderRoll(action)})</li>;
 
 const CombatActions = ({ combats }) => (
   <ul>
     {
       combats
-        .slice(0, 5)
-        .map(render)
+        .slice(0, 10)
+        .map(renderAction)
     }
   </ul>
 );

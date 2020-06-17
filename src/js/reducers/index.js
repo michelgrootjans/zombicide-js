@@ -1,35 +1,29 @@
-import { ADD_ARTICLE } from "../constants/action-types";
 import dice from '../domain/dice'
+import {initialEquipment} from "./equipment";
 
 const initialState = {
   articles: [],
   remoteArticles: [],
-  combats: []
+  combats: [],
+  equipment: initialEquipment()
 };
 
 function rootReducer(state = initialState, action) {
-  if (action.type === ADD_ARTICLE) {
-    return Object.assign({}, state, {
-      articles: state.articles.concat(action.payload)
-    });
-  }
-
-  if (action.type === "DATA_LOADED") {
-    return Object.assign({}, state, {
-      remoteArticles: state.remoteArticles.concat(action.payload)
-    });
-  }
-
   if (action.type === "ATTACK") {
-    let rolls = [dice.roll(), dice.roll()];
-    let newResult = {rolls: rolls, damage: rolls.filter(roll => roll >= 5).length};
+    const {weaponName} = action.payload;
+    const weapon = state.equipment.find(item => item.name === weaponName)
+
+    let rolls = Array.from(Array(weapon.dice).keys()).map(_ => dice.roll());
+    let damage = rolls
+      .filter(roll => roll >= weapon.accuracy)
+      .reduce((acc, _) => acc + weapon.damage, 0);
+    let newResult = {weaponName, rolls, damage};
     return {
       ...state,
       combats: [newResult, ...state.combats]
     }
   }
 
-  [].reverse().slice(0, 10)
   return state;
 }
 
