@@ -5,7 +5,7 @@ import './Actions.css'
 
 const Equipment = ({equipment, use}) => {
   const render = (item, i) => {
-    const src = process.env.PUBLIC_URL + "/" + item.src
+    const src = item.src
     return <img
       className={'card'}
       key={`card_${i}`}
