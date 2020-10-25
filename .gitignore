@@ -24,3 +24,7 @@ yarn-error.log*
 
 #IDE files and folders
 .idea
+
+# lockfiles
+yarn.lock
+package-lock.json
